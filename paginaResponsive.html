@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 5px 10px;
+            text-align: center;
+
+            display: none;
+        }
+
+        img {
+            width: 200px;
+            float: left;
+            margin-right: 10px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .headerimg {
+            width: 100%;
+
+            max-height: 500px;
+            margin-top: -10px;
+            display: block;
+        }
+
+        button {
+            display: none;
+        }
+
+        article {
+            clear: both;
+        }
+
+        /* Modo Oscuro */
+        @media (prefers-color-scheme: dark) {
+
+            body {
+                color: #fefefe;
+                background: #121212;
+            }
+
+        }
+
+        /* Modo Claro */
+        @media (prefers-color-scheme: light) {
+
+            body {
+                color: black;
+                background: #dadada;
+            }
+        }
+
+        /* Media Queries */
+        @media (min-width: 624px) {
+            img {
+                display: block;
+            }
+
+            header {
+                display: block;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            button {
+                display: block;
+            }
+
+            article {
+                width: 50%;
+                margin: 10px;
+
+            }
+
+            .grande {
+                display: flex;
+                flex-direction: row;
+
+            }
+
+            article {
+
+                display: flex;
+                flex-direction: column;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <button> Sortir </button>
+        <button> Següent</button>
+
+        <h1>Travelport</h1>
+    </header>
+
+    <img class="headerimg" src="GovernanceText.png" alt="Seu de Travelport,Langley">
+    <div class="grande">
+        <article>
+            <img src="travelport.jpeg" alt="Seu de Travelport,Langley">
+            <h3>Article 1</h3>
+            <p>Aquest és el contingunt de l'article 1.</p>
+            <p>Són dues frases senzilles i curtes, com pots veure.</p>
+        </article>
+        <article>
+            <img src="travelport.jpeg" alt="Seu de Travelport,Langley">
+            <h3>Article 2</h3>
+            <p>Aquest és el contingunt de l'article 2.</p>
+            <p>Són dues frases senzilles i curtes, com pots veure.</p>
+        </article>
+        <article>
+            <img src="travelport.jpeg" alt="Seu de Travelport,Langley">
+            <h3>Article 3</h3>
+            <p>Aquest és el contingunt de l'article 3.</p>
+            <p>Són dues frases senzilles i curtes, com pots veure.</p>
+        </article>
+    </div>
+</body>
+
+</html>

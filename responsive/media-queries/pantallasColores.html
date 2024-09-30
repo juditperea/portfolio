@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    <style>
+        .grid-container {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .grid-item1 {
+            width: 100%;
+            background-color: orange;
+            height: 30px;
+            margin: 1px;
+        }
+
+        /* Modo Oscuro */
+        @media (prefers-color-scheme: dark) {
+            .grid-container {
+                color: white;
+                background: black;
+            }
+
+            body {
+                color: #fefefe;
+                background: #121212;
+            }
+
+            .grid-item1 {
+
+                background-color: rgb(143, 101, 24);
+            }
+
+            .grid-item2.media-query {
+
+                background-color: rgb(33, 117, 8);
+            }
+
+            .grid-item3.media-query {
+
+                background-color: rgb(9, 42, 139);
+            }
+
+            .grid-item4.media-query {
+
+                background-color: rgb(74, 74, 74);
+            }
+        }
+
+        /* Modo Claro */
+        @media (prefers-color-scheme: light) {
+            .grid-container {
+                color: black;
+                background: #dadada;
+            }
+
+            body {
+                color: black;
+                background: #dadada;
+            }
+        }
+
+        /* Media Queries */
+        @media (min-width: 624px) {
+            .grid-item1.media-query {
+                width: 49%;
+                margin: 2px;
+            }
+
+            .grid-item2.media-query {
+                height: 150px;
+            }
+
+            .grid-item3.media-query {
+                width: 30%;
+                height: 200px;
+                margin: 10px;
+            }
+
+            .grid-item4.media-query {
+                width: 49%;
+                height: 75px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .grid-item2.media-query {
+                height: 250px;
+            }
+
+            .grid-item4.media-query {
+                width: 23%;
+                margin: 5px;
+                height: 100px;
+            }
+        }
+
+
+
+        .grid-item2 {
+            width: 100%;
+            background-color: rgb(167, 254, 67);
+            margin: 1px;
+            height: 75px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .grid-item3 {
+            width: 100%;
+            background-color: rgb(50, 105, 186);
+            height: 100px;
+            margin: 1px;
+        }
+
+        .grid-item4 {
+            width: 100%;
+            background-color: rgb(210, 213, 218);
+            height: 50px;
+            margin: 1px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid-container">
+        <div class="grid-item1 media-query">1</div>
+        <div class="grid-item1 media-query">2</div>
+        <div class="grid-item2 media-query">3</div>
+        <div class="grid-item3 media-query">4</div>
+        <div class="grid-item3 media-query">5</div>
+        <div class="grid-item3 media-query">6</div>
+        <div class="grid-item4 media-query">7</div>
+        <div class="grid-item4 media-query">7</div>
+        <div class="grid-item4 media-query">7</div>
+        <div class="grid-item4 media-query">7</div>
+    </div>
+</body>
+
+</html>

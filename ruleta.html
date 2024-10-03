@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruleta Francesa</title>
+    <style>
+body {
+    background-color: green;
+    color: white;
+}
+
+.rule {
+    margin: 50px;
+    height: 300px;
+    width: 300px;
+    border-radius: 150px;
+    border: 3px solid black;
+}
+
+.tapete {
+    margin: auto;
+    margin-left: 500px;
+    margin-top:50px;
+    position: absolute;
+    top: 10px;
+    margin-bottom: 50px;
+    height: 300px;
+    width: 520px;
+    border-radius: 30px;
+    border: 3px solid black;
+}
+
+.form {
+    margin-left: 50px;
+}
+
+.form label, .form input, .form select, .form button {
+    margin-top: 10px;
+}
+
+    </style>
+</head>
+<body>
+    <div >
+        <img class="rule" src="ruleta.gif">
+    </div>
+    <div>
+        <img class="tapete" src="rule.jpg">
+    </div>
+
+    <div class="form"> 
+        <label>Quantitat apostada (€) </label>
+        <input type="text" id="quantitat" required>
+        <label>Tipus aposta</label>
+        <select id="tipusaposta" required>
+            <option value="single">Senzilla</option>
+            <option value="falta">Falta/Passa</option>
+            <option value="parell">Parell/Senar</option>
+            <option value="color">Vermell/Negre</option>
+            <option value="dotzena">Dotzena</option>
+            <option value="sisena">Sisena</option>
+        </select>
+        <label>Número</label>
+        <input type="text" id="numero" required>
+        <button onclick="calcularPremio()">Apostar</button>
+    </div>
+
+    <script src="ruleta.js"></script>
+</body>
+</html>

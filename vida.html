@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Joc de la vida</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        table {
+            border-collapse: collapse;
+            display: grid;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        td {
+            border: 1px solid #4f644f;
+            padding: 8px;
+            text-align: center;
+        }
+
+        tr {
+            background-color: #2c2b2b;
+        }
+
+        .alive {
+            background-color: limegreen;
+        }
+
+        .dead {
+            background-color: black;
+        }
+        .invisible{
+            visibility: hidden;
+        }
+    </style>
+    <script>
+        var rows
+        var cols
+        var id
+        var table
+        var neighborCell
+
+        //generamos un tablero donde rows(filas) y cols(columnas) se coge del formulario
+        //donde metemos un numero como input que se usa tanto para rows como para cols
+        function generarTablero() {
+            for (var i = 0; i < rows; i++) {
+                //por cada fila,creamos una fila de la tabla
+                var row = document.createElement('tr')
+                table.appendChild(row)
+                //por cada columna, 
+                for (var j = 0; j < cols; j++) {
+                    id++//le ponemos un id empezando por 1 k se incremente por cada celda
+                    var cell = document.createElement('td')//creamos las celdas
+                    cell.id = id.toString()//pasamos el id a string
+                    cell.classList.add('dead')//empezamos con todas las celdas muertas
+                    row.appendChild(cell)//metemos las celdas en la tabla
+                }
+            }
+
+            document.getElementById('form').classList.add('invisible')
+            //hacemos que cuando se cree el tablero se deje de ver el form
+        }
+
+function colocarVivas() {
+    //definimos el patron con el que empezar(celulas vivas)
+    var patron = [
+        [0, 1, 0],
+        [0, 0, 1],
+        [1, 1, 1]
+    ];
+
+    //calculamos el centro del tablero y empezamos desde ahi el patron
+    var startRow = Math.floor(rows / 2) - Math.floor(patron.length / 2) 
+    var startCol = Math.floor(cols / 2) - Math.floor(patron[0].length / 2)
+
+    for (var i = 0; i < patron.length; i++) {//recorre todas las filas del patron
+        for (var j = 0; j < patron[i].length; j++) {//recorre las columnas del patron
+            if (patron[i][j] === 1) {//si una celda del patron es un 1
+                var row = startRow + i
+                var col = startCol + j//buscamos la posicion de los 1
+                var cell = document.getElementById((row * cols + col + 1).toString())//coje el id de la celda 
+
+                if (cell != null) {//si la celda existe
+                    cell.classList.remove('dead')
+                    cell.classList.add('alive')
+                    //hacemos que este viva
+                }
+            }
+        }
+    }
+        }
+
+        function contarVivas(row, col) {
+            var vivas = 0
+            var muertas = 0
+
+            for (var i = row - 1; i <= row + 1; i++) {//recorremos filas
+                for (var j = col - 1; j <= col + 1; j++) {//recorremos columnas
+                    if (i >= 0 && i < rows && j >= 0 && j < cols && !(i === row && j === col)) {//si no nos hemos salido de los limites del tablero
+                        var neighborRow = table.rows[i]//cogemos como fila vecina las filas immediatamente antes y despues
+                        if (neighborRow) {//si estamos en una fila adyacente
+                            neighborCell = neighborRow.cells[j]//cogemos las celdas adyacentes(8)
+                            if (neighborCell.classList.contains('alive')) {
+                                vivas++//si esta viva, sumamos 1 a vivas
+                            } else if (neighborCell.classList.contains('dead')) {
+                                muertas++//si esta muerta,sumamos 1 a muertas
+                            }
+                        }
+                    }
+                }
+            }
+
+            var currentCell = table.rows[row].cells[col]//celda actual
+            if (currentCell.classList.contains('alive')) {//si la celda actual esta viva
+                if (vivas === 2 || vivas === 3) {//si tiene 2 o 3 celdas vivas alrededor
+                    //no pasa nada
+                } else {//si no hay 2 o 3 vivas
+                    setTimeout(function() {//dentro de un turno(1 segundo)
+                    currentCell.classList.remove('alive')
+                    currentCell.classList.add('dead')//la celda actual morirá
+                    }, 1000);
+
+                }
+            } else {//si la celda actual está muerta
+                if (vivas >= 3) {//si hay 3 o mas vivas alrededor
+                    setTimeout(function() {//dentro de un turno(1 segundo)
+                    currentCell.classList.remove('dead')
+                    currentCell.classList.add('alive')//la celda vivirá
+                    }, 1000)
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {//cuando cargue el DOM
+            id = 0
+            table = document.createElement('table')//creamos tabla
+            document.body.appendChild(table)//la añadimos al DOM
+
+            document.getElementById('form').addEventListener('submit', function (event) {
+                event.preventDefault()//recuperamos los datos del submit del form
+                var input = document.getElementById('rows-cols-input')//lo recuperamos por id y guardamos en input
+                rows = parseInt(input.value)//rows sera el input pasado a numero,por si acaso no se guarda como int
+                cols = parseInt(input.value)//cols sera el input pasado a numero,por si acaso no se guarda como int
+
+                generarTablero()
+                colocarVivas()
+                setInterval(iniciarJuego, 1000)//cada segundo se actualiza
+            })
+        })
+
+        function iniciarJuego() {
+            for (var i = 0; i < rows; i++) {
+                for (var j = 0; j < cols; j++) {
+                    contarVivas(i, j)
+                }
+            }
+            var vivas = document.getElementsByClassName('alive').length
+            var muertas = document.getElementsByClassName('dead').length
+            console.log("Vivas: " + vivas + " muertas: " + muertas)//cuenta cuantas vivas y cuantas muertas hay actual.
+        }
+    </script>
+    
+</head>
+
+<body>
+    <form id="form">
+        <label for="rows-cols-input">Elige el número de filas y columnas:</label>
+        <input type="number" id="rows-cols-input" required>
+        <button type="submit">Empezar juego</button>
+    </form>
+</body>
+</html>

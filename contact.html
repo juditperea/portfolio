@@ -22,11 +22,14 @@
                 </button>
                 <div class="collapse navbar-collapse" id="contents">
                     <ul class="navbar-nav me-auto mb-2">
-                        <li class="nav-item menu">
-                            <a class="nav-link menu-toggle menu-item" href="projects.html
-                            " data-bs-toggle="menu">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="dropdown" data-bs-toggle="dropdown">
                                 Mis proyectos
                             </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="front-projects.html">FrontEnd</a></li>
+                                <li><a class="dropdown-item" href="back-projects.html">End-to-End</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item menu">
                             <a class="nav-link menu-toggle menu-item" href="stack.html" data-bs-toggle="menu">
@@ -34,14 +37,13 @@
                             </a>
                         </li>
                         <li class="nav-item menu">
-                            <a class="nav-link menu-toggle menu-item" href="contact.html"
-                                data-bs-toggle="menu">
+                            <a class="nav-link menu-toggle menu-item" href="contact.html" data-bs-toggle="menu">
                                 Contacto
                             </a>
                         </li>
                     </ul>
                     <button id="modo-switch" class="btn btn-light btn-md rounded-pill m-2">
-                        <i class="fa-solid fa-circle-half-stroke"></i>
+                        <i class="fa-solid fa-circle-half-stroke"></i>Cambiar Modo
                     </button>
                 </div>
             </div>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Switch</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    width: 800px;
+    height: 350px;
+    background-color: darkturquoise;
+    border-radius: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shiny {
+    width: 70%;
+    height: 90%;
+    background-color: rgb(39, 177, 177);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset black 0px 0px 4px;
+}
+
+.screen {
+    width: 90%;
+    height: 90%;
+    border: 3px solid black;
+    border-radius: 2px;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+.joystick1 {
+    position: absolute;
+    margin-right: 670px;
+    margin-bottom:170px;
+    background-color: white;
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 100%;
+}
+
+.joystick2 {
+    position: absolute;
+    margin-top:100px;
+    margin-left: 670px;
+    background-color: white;
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 100%;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="joystick1"></div>
+        <div class="joystick2"></div>
+        <div class="shiny">
+            <div class="screen">
+                <img src="switch.png">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

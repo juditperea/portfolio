@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MasterMind</title>
+</head>
+<style>
+    .body {
+        justify-content: center;
+        display: flex;
+    }
+
+    .div1 {
+        display: flex;
+        flex-direction: row;
+        border: 1px solid black;
+        height: 40px;
+        width: 190px;
+        background-color: rgb(220, 220, 220);
+    }
+
+    .circuloMaster {
+        border: 1px solid black;
+        margin-top: 5px;
+        margin-left: 5px;
+        border-radius: 20px;
+        height: 30px;
+        width: 30px;
+        background-color: white;
+    }
+
+    .circuloJugador {
+        border: 1px solid black;
+        margin-top: 5px;
+        margin-left: 5px;
+        border-radius: 20px;
+        height: 30px;
+        width: 30px;
+        background-color: white;
+    }
+
+    .div2 {
+        border-left: 1px solid black;
+        margin-left: 5px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .div3 {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .circuloPeque {
+        border: 1px solid black;
+        margin-top: 5px;
+        margin-left: 4px;
+        border-radius: 6px;
+        height: 12px;
+        width: 12px;
+        background-color: white;
+    }
+
+    .tremendo {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    .red {
+        background-color: red;
+    }
+
+    .blue {
+        background-color: blue;
+    }
+
+    .black {
+        background-color: black;
+    }
+
+    .white {
+        background-color: white;
+    }
+
+    .green {
+        background-color: green;
+    }
+
+    .yellow {
+        background-color: yellow;
+    }
+    #boton {
+        font-size: 10px;
+        background-color: lightgreen;
+        width: 60px;
+        height: 25px;
+        border: 1px solid green;
+        border-radius: 50%;
+        margin: 5px;
+        align-items: center;
+        text-align: center;
+        color:green;
+    }
+    #respuesta{
+        display:none;
+    }
+</style>
+
+<body class="body">
+    <div class="tremendo">
+        <div class="div1" id="1">
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="div2">
+                <div class="div3">
+                    <div class="circuloPeque"></div>
+                    <div class="circuloPeque"></div>
+                </div>
+                <div class="div3">
+                    <div class="circuloPeque"></div>
+                    <div class="circuloPeque"></div>
+                </div>
+            </div>
+        </div>
+        <div class="div1" id="2">
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="div2">
+                <div class="div3">
+                    <div class="circuloPeque"></div>
+                    <div class="circuloPeque"></div>
+                </div>
+                <div class="div3">
+                    <div class="circuloPeque"></div>
+                    <div class="circuloPeque"></div>
+                </div>
+            </div>
+        </div>
+        <div class="div1" id="3">
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="div2">
+                <div class="div3">
+                    <div class="circuloPeque"></div>
+                    <div class="circuloPeque"></div>
+                </div>
+                <div class="div3">
+                    <div class="circuloPeque"></div>
+                    <div class="circuloPeque"></div>
+                </div>
+            </div>
+        </div>
+        <div class="div1" id="4">
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="div2">
+                <div class="div3">
+                    <div class="circuloPeque"></div>
+                    <div class="circuloPeque"></div>
+                </div>
+                <div class="div3">
+                    <div class="circuloPeque"></div>
+                    <div class="circuloPeque"></div>
+                </div>
+            </div>
+        </div>
+        <div class="div1" id="5">
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="div2">
+                <div class="div3">
+                    <div class="circuloPeque"></div>
+                    <div class="circuloPeque"></div>
+                </div>
+                <div class="div3">
+                    <div class="circuloPeque"></div>
+                    <div class="circuloPeque"></div>
+                </div>
+            </div>
+        </div>
+        <div class="div1" id="6">
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="div2">
+                <div class="div3">
+                    <div class="circuloPeque"></div>
+                    <div class="circuloPeque"></div>
+                </div>
+                <div class="div3">
+                    <div class="circuloPeque"></div>
+                    <div class="circuloPeque"></div>
+                </div>
+            </div>
+        </div>
+        <div class="div1" id="7">
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="div2">
+                <div class="div3">
+                    <div class="circuloPeque"></div>
+                    <div class="circuloPeque"></div>
+                </div>
+                <div class="div3">
+                    <div class="circuloPeque"></div>
+                    <div class="circuloPeque"></div>
+                </div>
+            </div>
+        </div>
+        <div class="div1" id="8">
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="div2">
+                <div class="div3">
+                    <div class="circuloPeque"></div>
+                    <div class="circuloPeque"></div>
+                </div>
+                <div class="div3">
+                    <div class="circuloPeque"></div>
+                    <div class="circuloPeque"></div>
+                </div>
+            </div>
+        </div>
+        <div class="div1" id="9">
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="div2">
+                <div class="div3">
+                    <div class="circuloPeque"></div>
+                    <div class="circuloPeque"></div>
+                </div>
+                <div class="div3">
+                    <div class="circuloPeque"></div>
+                    <div class="circuloPeque"></div>
+                </div>
+            </div>
+        </div>
+        <div class="div1" id="10">
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="div2">
+                <div class="div3">
+                    <div class="circuloPeque"></div>
+                    <div class="circuloPeque"></div>
+                </div>
+                <div class="div3">
+                    <div class="circuloPeque"></div>
+                    <div class="circuloPeque"></div>
+                </div>
+            </div>
+        </div>
+        <div class="div1" id="11">
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="div2">
+                <div class="div3">
+                    <div class="circuloPeque"></div>
+                    <div class="circuloPeque"></div>
+                </div>
+                <div class="div3">
+                    <div class="circuloPeque"></div>
+                    <div class="circuloPeque"></div>
+                </div>
+            </div>
+        </div>
+        <div class="div1" id="12">
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="circuloMaster" onclick="cambiarColor()"></div>
+            <div class="div2">
+                <div class="div3">
+                    <div class="circuloPeque"></div>
+                    <div class="circuloPeque"></div>
+                </div>
+                <div class="div3">
+                    <div class="circuloPeque"></div>
+                    <div class="circuloPeque"></div>
+                </div>
+            </div>
+        </div>
+        <div class="div1" id="respuesta">
+            <div class="circuloJugador" id="respuesta1"></div>
+            <div class="circuloJugador" id="respuesta2"></div>
+            <div class="circuloJugador" id="respuesta3"></div>
+            <div class="circuloJugador" id="respuesta4"></div>
+            <div class="div2">
+            </div>
+        </div>
+        <div>
+            <button id="boton" onclick="validar()"> Validar ✔ </button>
+        </div>
+    </div>
+</body>
+<script>
+    let currentRow = 1;
+    let secuenciaGenerada = [];
+    let secuenciaJugador = [];
+    
+    function validar() {
+    const filaActual = document.getElementById(currentRow.toString());
+    const circuloMaster = Array.from(filaActual.querySelectorAll('.circuloMaster'));
+    const circuloJugador = Array.from(document.querySelectorAll('.circuloJugador'));
+    const circulosPequeños = Array.from(filaActual.querySelectorAll('.circuloPeque'));
+
+    let coincidencias = 0;
+    const coloresElegidos = circuloMaster.map(circle => getComputedStyle(circle).getPropertyValue('background-color'));
+    const coloresCorrectos = circuloJugador.map(circle => getComputedStyle(circle).getPropertyValue('background-color'));
+
+    for (let i = 0; i < coloresElegidos.length; i++) {
+        if (coloresElegidos[i] === coloresCorrectos[i]) {
+            circulosPequeños[coincidencias].style.backgroundColor = 'red';
+            coincidencias++;
+        }
+    }
+
+    if (coincidencias === 4) {
+        return;
+    }
+
+    for (let i = 0; i < coloresElegidos.length; i++) {
+        if (coloresElegidos[i] !== coloresCorrectos[i]) {
+            if (coloresCorrectos.includes(coloresElegidos[i])) {
+                const index = coloresCorrectos.indexOf(coloresElegidos[i]);
+                coloresCorrectos[index] = null; 
+                circulosPequeños[coincidencias].style.backgroundColor = 'black';
+                coincidencias++;
+            }
+        }
+    }
+
+    currentRow++;
+    if (currentRow > 12) {
+        currentRow = 12;
+    }
+}
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+    const colors = ["red", "blue", "black", "green", "yellow", "white"];
+    const jugadorCircles = document.querySelectorAll(".circuloMaster");
+
+    jugadorCircles.forEach(circle => {
+        circle.onclick = function() {
+            if (parseInt(circle.parentElement.id) === currentRow) {
+                circle.classList.remove(...colors);
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                circle.classList.add(randomColor);
+            }
+
+        };
+    });
+    
+    const circlesMaster = document.querySelectorAll(".circuloJugador");
+    //guardar array de colores random
+    const circuloJugadorColors = Array.from(circlesMaster).map(circle => {
+        secuenciaGenerada = Array.from(circle.classList).find(className => colors.includes(className));
+    });
+    circlesMaster.forEach(circle => {
+        //guardar array de colores del jugador
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        circle.classList.add(randomColor);
+        secuenciaJugador = Array.from(circle.classList).find(className => colors.includes(className));
+        
+
+    });
+
+   
+});
+
+</script>
+
+</html>

@@ -11,39 +11,58 @@
     .body {
         justify-content: center;
         display: flex;
+        background-color: rgb(46, 46, 46);
+        flex-direction: row;
+        color: white;
+        align-items: center;
+        text-align: center;
+        display: flex;
+        justify-content: start;
+        font-family: Arial, Helvetica, sans-serif;
     }
 
+    .ins {
+        background-color: rgb(191, 89, 245);
+        border: 4px solid rgb(255, 17, 207);
+        box-shadow: 0px 2px 10px 6px rgb(160, 8, 155), inset 0px 0px 6px 2px rgb(103, 3, 134);
+        padding: 20px;
+        border-radius: 20px;
+        display:flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 30vw;
+        height: 350px;
+        margin: 20mm;
+
+    }
+    
     .div1 {
         display: flex;
         flex-direction: row;
         border: 1px solid black;
+        border-radius: 10px;
+        margin-bottom: 1mm;
         height: 40px;
         width: 190px;
-        background-color: rgb(220, 220, 220);
+        background-color: rgb(244, 244, 244);
     }
 
-    .circuloMaster {
-        border: 1px solid black;
+    .circuloMaster, .circuloJugador{
+        border: 1px solid rgb(192, 192, 192);
         margin-top: 5px;
         margin-left: 5px;
         border-radius: 20px;
         height: 30px;
         width: 30px;
         background-color: white;
+        cursor: pointer;
+        transition: 0.3s ease;
     }
 
-    .circuloJugador {
-        border: 1px solid black;
-        margin-top: 5px;
-        margin-left: 5px;
-        border-radius: 20px;
-        height: 30px;
-        width: 30px;
-        background-color: white;
-    }
+    
 
     .div2 {
-        border-left: 1px solid black;
+        border-left: 1px solid rgb(154, 154, 154);
         margin-left: 5px;
         display: flex;
         flex-direction: column;
@@ -55,63 +74,81 @@
     }
 
     .circuloPeque {
-        border: 1px solid black;
+        border: 1px solid rgb(192, 192, 192);
         margin-top: 5px;
         margin-left: 4px;
         border-radius: 6px;
         height: 12px;
         width: 12px;
         background-color: white;
+        transition: background-color 0.3s ease;
     }
 
-    .tremendo {
+    .grande {
         display: flex;
         flex-direction: column;
         margin-top: 20px;
     }
 
-    .red {
-        background-color: red;
+    .orange {
+        background-color: rgb(249, 138, 52);
     }
 
     .blue {
-        background-color: blue;
+        background-color: rgb(103, 218, 247);
     }
 
-    .black {
-        background-color: black;
+    .purple {
+        background-color: rgb(120, 44, 219);
     }
 
-    .white {
-        background-color: white;
+    .pink {
+        background-color: rgb(239, 105, 235);
     }
 
     .green {
-        background-color: green;
+        background-color: rgb(124, 243, 124);
     }
 
     .yellow {
-        background-color: yellow;
+        background-color: rgb(249, 249, 79);
     }
+
     #boton {
         font-size: 10px;
-        background-color: lightgreen;
+        background-color: rgb(199, 241, 199);
         width: 60px;
         height: 25px;
         border: 1px solid green;
-        border-radius: 50%;
+        border-radius: 50px;
         margin: 5px;
-        align-items: center;
         text-align: center;
-        color:green;
+        color: green;
     }
-    #respuesta{
-        display:none;
+
+    #respuesta {
+        display: none;
     }
 </style>
 
 <body class="body">
-    <div class="tremendo">
+    <div class="ins">
+        <h3>Instrucciones para jugar a MasterMind:</h3>
+        <p> 
+            <strong>1. Elige colores:</strong> Haz clic en cada círculo de la fila actual para asignarle un color.<br><br>
+            <strong>2. Valida:</strong> Pulsa el botón "Validar" para comprobar la secuencia.
+        </p>
+        <ul>
+            <li>Color correcto en la posición correcta<span style="color: red;">🔴</span> </li>
+            <li>Color correcto en la posición incorrecta<span style="color: black;">⚫</span> </li>
+        </ul>
+        <p> 
+            <strong>3. Ajusta y repite:</strong> Usa las pistas para modificar la combinación en la siguiente fila. Tienes hasta 12 intentos para adivinar la secuencia. 
+        </p>
+        <p>¡Buena suerte!</p>
+    </div>
+    
+    <div class="grande">
         <div class="div1" id="1">
             <div class="circuloMaster" onclick="cambiarColor()"></div>
             <div class="circuloMaster" onclick="cambiarColor()"></div>
@@ -321,78 +358,74 @@
     let currentRow = 1;
     let secuenciaGenerada = [];
     let secuenciaJugador = [];
-    
+
     function validar() {
-    const filaActual = document.getElementById(currentRow.toString());
-    const circuloMaster = Array.from(filaActual.querySelectorAll('.circuloMaster'));
-    const circuloJugador = Array.from(document.querySelectorAll('.circuloJugador'));
-    const circulosPequeños = Array.from(filaActual.querySelectorAll('.circuloPeque'));
+        const filaActual = document.getElementById(currentRow.toString());
+        const circuloMaster = Array.from(filaActual.querySelectorAll('.circuloMaster'));
+        const circuloJugador = Array.from(document.querySelectorAll('.circuloJugador'));
+        const circulosPequeños = Array.from(filaActual.querySelectorAll('.circuloPeque'));
 
-    let coincidencias = 0;
-    const coloresElegidos = circuloMaster.map(circle => getComputedStyle(circle).getPropertyValue('background-color'));
-    const coloresCorrectos = circuloJugador.map(circle => getComputedStyle(circle).getPropertyValue('background-color'));
+        let coincidencias = 0;
+        const coloresElegidos = circuloMaster.map(circle => getComputedStyle(circle).getPropertyValue('background-color'));
+        const coloresCorrectos = circuloJugador.map(circle => getComputedStyle(circle).getPropertyValue('background-color'));
 
-    for (let i = 0; i < coloresElegidos.length; i++) {
-        if (coloresElegidos[i] === coloresCorrectos[i]) {
-            circulosPequeños[coincidencias].style.backgroundColor = 'red';
-            coincidencias++;
-        }
-    }
-
-    if (coincidencias === 4) {
-        return;
-    }
-
-    for (let i = 0; i < coloresElegidos.length; i++) {
-        if (coloresElegidos[i] !== coloresCorrectos[i]) {
-            if (coloresCorrectos.includes(coloresElegidos[i])) {
-                const index = coloresCorrectos.indexOf(coloresElegidos[i]);
-                coloresCorrectos[index] = null; 
-                circulosPequeños[coincidencias].style.backgroundColor = 'black';
+        for (let i = 0; i < coloresElegidos.length; i++) {
+            if (coloresElegidos[i] === coloresCorrectos[i]) {
+                circulosPequeños[coincidencias].style.backgroundColor = 'red';
                 coincidencias++;
             }
         }
-    }
 
-    currentRow++;
-    if (currentRow > 12) {
-        currentRow = 12;
-    }
-}
+        if (coincidencias === 4) {
+            return;
+        }
 
-
-    document.addEventListener("DOMContentLoaded", function() {
-    const colors = ["red", "blue", "black", "green", "yellow", "white"];
-    const jugadorCircles = document.querySelectorAll(".circuloMaster");
-
-    jugadorCircles.forEach(circle => {
-        circle.onclick = function() {
-            if (parseInt(circle.parentElement.id) === currentRow) {
-                circle.classList.remove(...colors);
-                const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                circle.classList.add(randomColor);
+        for (let i = 0; i < coloresElegidos.length; i++) {
+            if (coloresElegidos[i] !== coloresCorrectos[i]) {
+                if (coloresCorrectos.includes(coloresElegidos[i])) {
+                    const index = coloresCorrectos.indexOf(coloresElegidos[i]);
+                    coloresCorrectos[index] = null;
+                    circulosPequeños[coincidencias].style.backgroundColor = 'black';
+                    coincidencias++;
+                }
             }
+        }
 
-        };
+        currentRow++;
+        if (currentRow > 12) {
+            currentRow = 12;
+        }
+    }
+
+    function cambiarColor(circle) {
+        const colors = ["orange", "blue", "purple", "green", "yellow", "pink"];
+        const currentColorClass = colors.find(color => circle.classList.contains(color));
+        let newIndex = (colors.indexOf(currentColorClass) + 1) % colors.length;
+
+        circle.classList.remove(...colors);
+        circle.classList.add(colors[newIndex]);
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const colors = ["orange", "blue", "purple", "green", "yellow", "pink"];
+        const jugadorCircles = document.querySelectorAll(".circuloMaster");
+
+        jugadorCircles.forEach(circle => {
+            circle.onclick = function () {
+                if (parseInt(circle.parentElement.id) === currentRow) {
+                    cambiarColor(circle);
+                }
+            };
+        });
+
+        const circlesMaster = document.querySelectorAll(".circuloJugador");
+        circlesMaster.forEach(circle => {
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            circle.classList.add(randomColor);
+            secuenciaJugador.push(randomColor);  
+        });
     });
-    
-    const circlesMaster = document.querySelectorAll(".circuloJugador");
-    //guardar array de colores random
-    const circuloJugadorColors = Array.from(circlesMaster).map(circle => {
-        secuenciaGenerada = Array.from(circle.classList).find(className => colors.includes(className));
-    });
-    circlesMaster.forEach(circle => {
-        //guardar array de colores del jugador
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        circle.classList.add(randomColor);
-        secuenciaJugador = Array.from(circle.classList).find(className => colors.includes(className));
-        
-
-    });
-
-   
-});
-
 </script>
+
 
 </html>

@@ -3,33 +3,54 @@
 
 <head>
     <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            justify-content: center;
+        }
+
         .dropdiv {
             width: 200px;
-            height: 300px;
-            border-radius: 7%;
+            height: auto;
+            border-radius: 2mm;
             background-color: rgb(206, 206, 206);
             margin: 10px;
             padding: 10px;
-            float: left;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
-        .encimaDiv{
+
+        .encimaDiv {
             border-style: dashed;
-            border: 3px solid rgb(99, 160, 240);
-            box-shadow: 0 0 20px rgb(43, 63, 241);
+            border: 3px solid rgb(23, 24, 25);
+            box-shadow: 0 0 20px rgb(94, 96, 108);
             margin-top: 20px;
-            
         }
+
         .espaciado {
-           margin-bottom: 30px; 
-           
+            margin-bottom: 10mm;
         }
+
         .afegir {
             opacity: 0.5;
-            display: block; 
+            display: block;
             align-items: left;
             align-items: flex-end;
             margin: 10px;
+        }
+
+        .todo {
+            background-color: rgb(245, 172, 233);
+        }
+
+        .doing {
+            background-color: rgb(198, 144, 235);
+        }
+
+        .done {
+            background-color: rgb(206, 250, 154);
         }
 
         .afegir:hover {
@@ -39,100 +60,93 @@
         p {
             width: 190px;
             height: 20px;
-            background-color: rgb(123, 122, 122);
+            background-color: rgb(60, 59, 59);
             color: white;
-            margin: 2px;
+            margin: 5px 0;
             padding: 4px;
-            position:relative;
-            
+            position: relative;
         }
+
 
         p:hover {
             opacity: 50%;
         }
     </style>
     <script>
-
-        /*en el html, ONDROP y ONDRAGOVER son eventos que permiten el drag y drop y llaman a las funciones que metemos
-        el evento ONCLICK llama a allowDrop pasandole el elemento actual 
-        ONDRAGENTER y ONDRAGLEAVE para cambiar el borde dependiendo si esta fuera o dentro de un div*/
         var idTarjeta = 1
 
-        function allowDrop(ev) {//le pasamos el evento con su informacion
-            ev.preventDefault()//quitamos el evento default para que nos deje hacer drag n drop
-       
+        function allowDrop(ev) {
+            ev.preventDefault()
+
         }
 
         function dragEnter(ev) {
-            //cuando arrastramos una targeta encima de un div se aplica este css
+
             var target = ev.currentTarget
-            if(target.classList.contains("dropdiv")){
+            if (target.classList.contains("dropdiv")) {
                 target.classList.add("encimaDiv")
-            }else{
+            } else {
                 target.classList.add("espaciado")
-             }
+            }
         }
 
         function dragLeave(ev) {
-            //cuando arrastramos una targeta fuera de un div se aplica este css
+
             var target = ev.currentTarget
-            if(target.classList.contains("dropdiv")){
+            if (target.classList.contains("dropdiv")) {
                 target.classList.remove("encimaDiv")
-            }else{
+            } else {
                 target.classList.remove("espaciado")
-             }
+            }
         }
 
 
         function drag(ev) {
-            
-            var draggedElement = ev.target//capturamos el elemento que ha llamado a esta funcion (el que draggeamos)
+
+            var draggedElement = ev.target
             ev.dataTransfer.setData("text", draggedElement.id)
-            //dataTransfer.setData lo que hace es coger el elemento y transferir su contenido como id del elemento que draggeamos
-            //text es el tipo de datos que usaremos
-            //draggedElement es la informacion como tal, y id es su id
         }
 
         function drop(ev) {
-            ev.preventDefault()//quitamos el evento default para que nos deje hacer drag n drop
-            var data = ev.dataTransfer.getData("text")//guardamos en data la informacion obtenida en la funcion de drag
-            var draggedElement = document.getElementById(data)//buscamos el elemento arrastrado en el documento utilizando su id
+            ev.preventDefault()
+            var data = ev.dataTransfer.getData("text")
+            var draggedElement = document.getElementById(data)
 
-            if (draggedElement) {//si el elemento arrastrado existe
-                ev.target.appendChild(draggedElement)//lo añadimos al destino del evento (la zona de soltar)
-                
+            if (draggedElement) {
+                ev.target.appendChild(draggedElement)
+
             }
-            if(ev.currentTarget.classList.contains("encimaDiv")){
+            if (ev.currentTarget.classList.contains("encimaDiv")) {
                 ev.currentTarget.classList.remove("encimaDiv")
             }
-         
+
         }
 
         function addNewCard(boton) {
-            var input = document.createElement("input")//creamos el elemento input en el DOM
-            var divActual = boton.parentNode//coge el padre del elemento boton que hemos clicado(su div)
-            input.type = "text"//input de tipo texto
-            input.placeholder = "Escribe aquí"//es el texto que aparecera por defecto como texto del input
-            divActual.appendChild(input)//añade al mismo div en el que estamos un elemento de tipo input
-            input.addEventListener("keyup", function (event) {//añadimos el listener de teclas y le añadimos la funcion
-                if (event.key === "Enter") {//que cuando presionemos la tecla Enter
-                    putCard(input, boton)//llamamos a la funcion putCard y le pasamos el input que hemos creado
-                    //y la informacion del boton(que contiene la informacion de en que div está)
+            var input = document.createElement("input")
+            var divActual = boton.parentNode
+            input.type = "text"
+            input.placeholder = "Escribe aquí"
+            divActual.appendChild(input)
+            input.addEventListener("keyup", function (event) {
+                if (event.key === "Enter") {
+                    putCard(input, boton)
+
                 }
             });
         }
 
-        function putCard(input, boton) {//se llama cuando damos al boton de añadir targeta y escribimos y damos Enter
-            var divEncima = event.target.parentNode //guardamos en la variable el div sobre el que estamos
-            var text = input.value//cogemos el texto del input y lo guardamos en la variable text
-            var card = document.createElement("p")//creamos un parrafo en el DOM
-            var divActual = boton.parentNode//cogemos el div en el que estamos con la informacion del boton
-            card.innerHTML = text//el texto del p que creamos sera el del input que le enviamos
-            card.id = idTarjeta//el id del parrafo nuevo sera el mismo que el de la tarjeta con la q lo creamos
-            idTarjeta++//aumentamos en 1 para que los id vayan cambiando
-            divActual.appendChild(card)//añadimos al div el p nuevo
-            divActual.removeChild(input)//eliminamos el input que le pasamos para crear el p
-            card.draggable = true//hacemos que el p sea draggable
+        function putCard(input, boton) {
+            var divEncima = event.target.parentNode
+            var text = input.value
+            var card = document.createElement("p")
+            var divActual = boton.parentNode
+            card.innerHTML = text
+            card.id = idTarjeta
+            idTarjeta++
+            divActual.appendChild(card)
+            divActual.removeChild(input)
+            card.draggable = true
             card.addEventListener("dragstart", function (event) {
                 drag(event)
             })
@@ -145,25 +159,28 @@
 </head>
 
 <body>
-        <div id="todo" class="dropdiv" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
-            <h3> To do </h3>
-            <div class="afegir" onclick="addNewCard(this)">
-                + Añadir Tarjeta
-            </div>
+    <div id="todo" class="dropdiv todo" ondrop="drop(event)" ondragover="allowDrop(event)"
+        ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
+        <h3> TO DO </h3>
+        <div class="afegir" onclick="addNewCard(this)">
+            + Nueva tarjeta
         </div>
-        <div id="doing" class="dropdiv" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
-            <h3> Doing </h3>
-            <div class="afegir" onclick="addNewCard(this)">
-                + Añadir Tarjeta
-            </div>
+    </div>
+    <div id="doing" class="dropdiv doing" ondrop="drop(event)" ondragover="allowDrop(event)"
+        ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
+        <h3> DOING </h3>
+        <div class="afegir" onclick="addNewCard(this)">
+            + Nueva tarjeta
         </div>
-        <div id="done" class="dropdiv" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
-            <h3> Done </h3>
-            <div class="afegir" onclick="addNewCard(this)">
-                + Añadir Tarjeta
-            </div>
+    </div>
+    <div id="done" class="dropdiv done" ondrop="drop(event)" ondragover="allowDrop(event)"
+        ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
+        <h3> DONE </h3>
+        <div class="afegir" onclick="addNewCard(this)">
+            + Nueva tarjeta
         </div>
-    
+    </div>
+
 </body>
 
 </html>

@@ -9,7 +9,6 @@ header{
     width:100%;
     z-index:1;
     border-bottom: 2px solid #333;
-    margin-bottom:4px;
 }
 .info-box {
     position: fixed; 
@@ -66,7 +65,7 @@ body.dark-mode .info-box {
 
 
 .main {
-    height: 72vh;
+    height: 81vh;
     padding-top: 20px;
     padding-bottom: 20px;
 }
@@ -147,6 +146,10 @@ a:hover {
 .container {
     max-width: 900px;
     overflow: visible;
+}
+
+.index {
+    margin-top:70px;
 }
 
 .list-group-item {
@@ -317,8 +320,8 @@ li:hover {
 }
 
 .stack {
-    width: 80px;
-    height: auto;
+    width: 75px;
+    height: 75px;
     background-color: #000000;
     border-radius: 8px;
     margin: 1.5mm;
@@ -326,8 +329,8 @@ li:hover {
 }
 
 .stackdiv {
-    margin-bottom: 3mm;
-    margin-top: 3mm;
+    margin-bottom: 2mm;
+    margin-top: 80px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

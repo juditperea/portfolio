@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>CSS Clone Retro Console</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <style>
+        body {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .screen {
+            background-color: rgba(87, 89, 100, 255);
+            width: 280px;
+            height: 200px;
+            border-radius: 20px;
+            border-bottom-right-radius: 50px;
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            border: 1px solid rgba(53, 54, 56, 255);
+            box-shadow: inset rgb(80, 80, 86, 1) 0px 0px 2px 2px;
+        }
+
+        .image {
+            background-color: rgba(53, 54, 56, 255);
+            width: 170px;
+            height: 140px;
+            border-radius: 5px;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+
+        }
+
+        .foximage {
+            border: 2px solid rgba(53, 54, 56, 255);
+        }
+
+        .console {
+            background-color: rgba(194, 191, 187, 255);
+            width: 340px;
+            height: 570px;
+            border-radius: 20px;
+            border-bottom-right-radius: 80px;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            box-shadow: inset white 0px 2px 2px 0px, inset rgb(152, 151, 151) 0px 0px 6px 4px;
+        }
+
+        .logo {
+            position: absolute;
+            top: 265px;
+            left: 30px;
+            width: 220px;
+            height: 40px;
+        }
+
+        .cruz {
+            position: absolute;
+            top: 360px;
+            left: 30px;
+            width: 70px;
+            height: 70px;
+        }
+
+        .button {
+            background-color: black;
+            position: absolute;
+            width: 20px;
+            height: 60px;
+            border-radius: 5px;
+            box-shadow: inset white 0px 1px 0px 0px, black 1px 0px 1px 1px, rgb(84, 83, 83) 0px 4px 2px 0px;
+        }
+
+        .button.vertical {
+            left: 25px;
+            width: 30px;
+            height: 80px;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button.horizontal {
+            top: 25px;
+            width: 80px;
+            height: 30px;
+            z-index: 0;
+        }
+
+        .centrocruz {
+            background-color: black;
+            box-shadow: inset rgb(121, 121, 121) 0px 2px 4px 1px, black 1px 1px;
+            width: 20px;
+            height: 20px;
+            border-radius: 100%;
+        }
+
+        .center {
+            background-color: black;
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+        }
+
+        .dosbotones {
+            width: 100px;
+            height: 40px;
+            border-radius: 100px;
+            position: absolute;
+            top: 380px;
+            right: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transform: rotate(-20deg);
+            box-shadow: inset rgb(173, 171, 169, 1) 10px 8px 8px 8px;
+        }
+
+        .dosbotones .botonizquierda {
+            height: 35px;
+            width: 35px;
+            background-color: rgba(127, 40, 78, 255);
+            border-radius: 100%;
+            margin-left: 4px;
+            box-shadow: rgb(84, 83, 83) -2px 6px 2px 0px, rgb(181, 180, 180) -20px 26px 10px 4px;
+        }
+
+        .dosbotones .botonderecha {
+            height: 35px;
+            width: 35px;
+            background-color: rgba(127, 40, 78, 255);
+            border-radius: 100%;
+            margin-right: 4px;
+            box-shadow: rgb(84, 83, 83) -2px 6px 2px 0px, rgb(181, 180, 180) -20px 26px 10px 4px;
+        }
+
+        .linea {
+            width: 100%;
+            position: absolute;
+            height: 4px;
+            top: 30px;
+            box-shadow: inset rgb(167, 162, 158, 1) -2px -2px 2px 0px;
+        }
+
+        .lineaizquierda {
+            left: 50px;
+            top: 33px;
+            width: 4px;
+            height: 34px;
+            box-shadow: inset rgb(167, 162, 158, 1) -2px -2px 2px 0px;
+        }
+
+        .lineaderecha {
+            position: absolute;
+            right: 25px;
+            width: 4px;
+            height: 34px;
+            box-shadow: inset rgb(167, 162, 158, 1) -2px -2px 2px 0px;
+        }
+        .buttons{
+            position: absolute;
+            margin-left:400px;
+        }
+        .select {
+            width: 40px;
+            height: 10px;
+            border: 2px solid black;
+            border-radius: 30px;
+            background-color: rgba(113, 110, 118, 255);
+            position: absolute;
+            right: 235px;
+            top: 480px;
+            transform: rotate(-25deg);
+            box-shadow: rgb(135, 135, 135) 1px 1px 2px 4px, inset rgb(99, 98, 98) 0px 0px 4px 2px, rgb(168, 167, 167) -10px 8px 8px 8px;
+        }
+
+        .start {
+            width: 40px;
+            height: 10px;
+            border: 2px solid black;
+            border-radius: 30px;
+            background-color: rgba(113, 110, 118, 255);
+            position: absolute;
+            right: 175px;
+            top: 480px;
+            transform: rotate(-25deg);
+            box-shadow: rgb(135, 135, 135) 1px 1px 2px 4px, inset rgb(99, 98, 98) 0px 0px 4px 2px, rgb(168, 167, 167) -10px 8px 8px 8px;
+        }
+
+        .vol1 {
+            position: absolute;
+            width: 45px;
+            height: 6px;
+            border: 1px solid black;
+            border-radius: 30px;
+            transform: rotate(60deg);
+            top:549px;
+            right: 72px;
+            box-shadow: inset black -2px -2px 4px 0px;
+        }
+
+        .vol2 {
+            position: absolute;
+            width: 45px;
+            height: 6px;
+            border: 1px solid black;
+            border-radius: 30px;
+            transform: rotate(60deg);
+            top: 540px;
+            right: 60px;
+            box-shadow: inset black -2px -2px 4px 0px;
+        }
+
+        .vol3 {
+            position: absolute;
+            width: 45px;
+            height: 6px;
+            border: 1px solid black;
+            border-radius: 30px;
+            transform: rotate(60deg);
+            top: 530px;
+            right: 50px;
+            box-shadow: inset black -2px -2px 4px 0px;
+        }
+
+        .vol4 {
+            position: absolute;
+            width: 45px;
+            height: 6px;
+            border: 1px solid black;
+            border-radius: 30px;
+            transform: rotate(60deg);
+            top: 520px;
+            right: 40px;
+            box-shadow: inset black -2px -2px 4px 0px;
+        }
+
+        .vol5 {
+            position: absolute;
+            width: 45px;
+            height: 6px;
+            border: 1px solid black;
+            border-radius: 30px;
+            transform: rotate(60deg);
+            top: 510px;
+            right: 30px;
+            box-shadow: inset black -2px -2px 4px 0px;
+        }
+
+        .vol6 {
+            position: absolute;
+            width: 45px;
+            height: 6px;
+            border: 1px solid black;
+            border-radius: 30px;
+            transform: rotate(60deg);
+            top: 500px;
+            right: 20px;
+            box-shadow: inset black -2px -2px 4px 0px;
+        }
+
+        .letra-b,
+        .letra-a,.selecttext, .starttext {
+            font-family: 'Arial', sans-serif;
+            font-size: 12px;
+            color: rgba(38, 64, 130, 255);
+            font-weight: 800;
+            position: absolute;
+        }
+
+        .letra-b {
+            top: 435px;
+            right: 90px;
+            transform: rotate(-20deg);
+        }
+
+        .letra-a {
+            top: 415px;
+            right: 35px;
+            transform: rotate(-20deg);
+        }
+        .selecttext{
+            top: 495px;
+            right: 220px;
+            transform: rotate(-25deg);
+        }
+        .starttext{
+            top: 495px;
+            right: 165px;
+            transform: rotate(-25deg);
+        }
+        .volumen{
+            position: absolute;
+            margin-left:350px;
+            top:0px;
+        }
+       
+    </style>
+</head>
+
+<body>
+    <div class="console">
+        <div class="lineaizquierda"></div>
+        <div class="lineaderecha"></div>
+        <div class="linea"></div>
+        <div class="screen">
+            <div class="image">
+                <img src="portfolio/fotos/foxes.png" alt="Foxes in love" class="foximage">
+            </div>
+        </div>
+        <img src="portfolio/fotos/logogameboy.png" class="logo" alt="Gameboy logo">
+        <div class="cruz">
+            <div class="button vertical">
+                <div class="centrocruz"></div>
+            </div>
+            <div class="button horizontal"></div>
+            <div class="center"></div>
+        </div>
+        <div class="dosbotones">
+            <div class="botonizquierda"></div>
+            <div class="botonderecha"></div>
+        </div>
+        <div class="letra-b">B</div>
+        <div class="letra-a">A</div>
+    </div>
+<div class="buttons">
+    <div class="select"></div>
+    <div class="start"></div>
+    <div class="selecttext">SELECT</div>
+    <div class="starttext">START</div>
+</div>
+    <div class="volumen">
+    <div class="vol1"></div>
+    <div class="vol2"></div>
+    <div class="vol3"></div>
+    <div class="vol4"></div>
+    <div class="vol5"></div>
+    <div class="vol6"></div>
+</div>
+    </div>
+</body>
+
+</html>
